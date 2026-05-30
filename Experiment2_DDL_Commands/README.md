@@ -105,156 +105,69 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
-Create a table named Orders with the following constraints:
-OrderID as INTEGER should be the primary key.
-OrderDate as DATE should be not NULL.
-CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
+Insert a student with RollNo 201, Name David Lee, Gender M, Subject Physics, and MARKS 92 into the Student_details table.
 
 ```sql
-create table Orders(
-OrderID int primary key,
-OrderDate date not null,
-CustomerID int,
-foreign key (CustomerID) references Customers(CustomerID)
-);
+INSERT INTO Student_details
+VALUES(201,'David Lee','M','Physics',92);
 ```
 
 **Output:**
 
-<img width="1314" height="629" alt="image" src="https://github.com/user-attachments/assets/f13a1b5e-e6bf-49d1-bc95-2621f222cf79" />
+<img width="1233" height="320" alt="image" src="https://github.com/user-attachments/assets/4f2f6d5d-43b9-454c-88bb-a9dfa2a86e65" />
 
 
 **Question 2**
 ---
-Create a new table named contacts with the following specifications:
-contact_id as INTEGER and primary key.
-first_name as TEXT and not NULL.
-last_name as TEXT and not NULL.
-email as TEXT.
-phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
+-- Paste Question 2 hereCreate a table named Employees with the following constraints:
 
+EmployeeID should be the primary key.
+FirstName and LastName should be NOT NULL.
+Email should be unique.
+Salary should be greater than 0.
+DepartmentID should be a foreign key referencing the Departments table.
+For example:
 ```sql
-create table contacts(
-contact_id int primary key,
-first_name text not null,
-last_name text not null,
-email text,
-phone text not null check(length(phone)>=10)
+CREATE TABLE Employees(
+     EmployeeID INT PRIMARY KEY,
+     FirstName TEXT NOT NULL,
+     LastName TEXT NOT NULL,
+     Email VARCHAR(30) UNIQUE,
+     Salary INT CHECK(Salary>0),
+     DepartmentID INTEGER,
+     FOREIGN KEY(DepartmentID) REFERENCES Departments(DepartmentID)
 );
 ```
 
 **Output:**
 
-<img width="1305" height="664" alt="image" src="https://github.com/user-attachments/assets/5cf29697-de20-4838-82fc-7a117b49e48c" />
+<img width="1232" height="508" alt="image" src="https://github.com/user-attachments/assets/bf5709b9-701b-4ecb-b748-e7fefca67b33" />
 
 
 **Question 3**
 ---
-Insert the below data into the Student_details table, allowing the Subject and MARKS columns to take their default values.
+Create a table named Products with the following columns:
 
-RollNo      Name          Gender      
-----------  ------------  ----------  
-204         Samuel Black  M          
-
-Note: The Subject and MARKS columns will use their default values.
- 
+ProductID as INTEGER
+ProductName as TEXT
+Price as REAL
+Stock as INTEGER
 
 ```sql
-insert into Student_details (RollNo,Name,Gender)
-values
-(204,'Samuel Black','M')
-```
-
-**Output:**
-
-<img width="798" height="645" alt="image" src="https://github.com/user-attachments/assets/f30ede1e-6a85-40d1-96b9-ef1e10ed969d" />
-
-
-**Question 4**
----
-Write a SQL query to add birth_date attribute as timestamp (datatype) in the table customer 
-
-Sample table: customer
-
- customer_id |   cust_name    |    city    | grade | salesman_id 
--------------+----------------+------------+-------+-------------
-        3002 | Nick Rimando   | New York   |   100 |        5001
-        3007 | Brad Davis     | New York   |   200 |        5001
-        3005 | Graham Zusi    | California |   200 |        5002
- 
-
-```sql
-alter table customer add birth_date timestamp;
-```
-
-**Output:**
-<img width="1068" height="491" alt="image" src="https://github.com/user-attachments/assets/85890195-279c-4fbd-9479-6d3304f0ca99" />
-
-
-**Question 5**
----
-Write a SQL Query for inserting the below values in the table Customers
-
-ID               NAME             AGE  ADDRESS     SALARY      
----------------  ---------------  ---  ----------  ----------  
-1                Ramesh           32   Ahmedabad   2000
-2                Khilan           25   Delhi       1500
-3                Kaushik          23   Kota        2000
-
-```sql
-insert into Customers
-values
-(1,'Ramesh','32','Ahmedabad','2000'),
-(2,'Khilan','25','Delhi','1500'),
-(3,'Kaushik','23','Kota','2000')
-```
-
-**Output:**
-
-
-
-**Question 6**
----
--- Paste Question 6 here
-
-```sql
-alter table Student_details add Country TEXT;
-```
-
-**Output:**
-
-<img width="934" height="509" alt="image" src="https://github.com/user-attachments/assets/8f7cd56e-8d2c-4081-8607-aaf961efb53a" />
-
-
-**Question 7**
----
-Write a SQL query to Add a new column Country as text in the Student_details table.
-
-Sample table: Student_details
-
- cid              name             type   notnull     dflt_value  pk
----------------  ---------------  -----  ----------  ----------  ----------
-0                RollNo           int    0                       1
-1                Name             VARCH  1                       0
-2                Gender           TEXT   1                       0
-3                Subject          VARCH  0                       0
-4                MARKS            INT (  0                       0
-
-```sql
-create table Products(
-ProductID INTEGER,
-ProductName TEXT,
-Price REAL,
-Stock INTEGER
+CREATE TABLE Products(
+    ProductID INTEGER,
+    ProductName TEXT,
+    Price REAL,
+    Stock INTEGER
 );
 ```
 
 **Output:**
 
-<img width="1084" height="622" alt="image" src="https://github.com/user-attachments/assets/3adb6b49-9eba-47fc-8dff-d1f601450e8a" />
+<img width="1234" height="396" alt="image" src="https://github.com/user-attachments/assets/cb79ac12-9e58-4b22-ae57-7e1baee726ae" />
 
 
-**Question 8**
+**Question 4**
 ---
 Create a table named Invoices with the following constraints:
 
@@ -264,18 +177,91 @@ DueDate as DATE should be greater than the InvoiceDate.
 Amount as REAL should be greater than 0.
 
 ```sql
-create table Invoices(
-InvoiceID INTEGER PRIMARY KEY,
-InvoiceDate DATE,
-DueDate DATE check (DueDate>InvoiceDate),
-Amount REAL check(Amount>0)
+CREATE TABLE Invoices(
+     InvoiceID INTEGER PRIMARY KEY,
+     InvoiceDate DATE,
+     DueDate DATE CHECK(DueDate>InvoiceDate),
+     Amount REAL CHECK (Amount>0)
 );
 ```
 
 **Output:**
 
-<img width="1005" height="626" alt="image" src="https://github.com/user-attachments/assets/0c68ad95-3c1c-470c-846b-6607d3f97e44" />
+<img width="1234" height="375" alt="image" src="https://github.com/user-attachments/assets/3f0d816e-13bc-4319-8521-ed9d18536b94" />
 
+
+**Question 5**
+---
+Insert the following customers into the Customers table:
+
+CustomerID  Name         Address     City        ZipCode
+----------  -----------  ----------  ----------  ----------
+302         Laura Croft  456 Elm St  Seattle     98101
+303         Bruce Wayne  789 Oak St  Gotham      10001
+
+```sql
+INSERT INTO Customers
+VALUES (302,'Laura Croft','456 Elm St','Seattle',98101),
+       (303,'Bruce Wayne','789 Oak St','Gotham',10001);
+```
+
+**Output:**
+
+<img width="1219" height="468" alt="image" src="https://github.com/user-attachments/assets/39073de6-dcd3-4904-930c-7df4e8e2cf57" />
+
+
+**Question 6**
+---
+Write a SQL Query  to change the name of attribute "name" to "first_name"  and add mobilenumber as number ,DOB as Date in the table Companies. 
+
+
+
+```sql
+TABLE Companies
+RENAME COLUMN name TO first_name;
+
+ALTER TABLE Companies
+ADD COLUMN mobilenumb number;
+
+ALTER TABLE Companies
+ADD COLUMN DOB Date;
+```
+
+**Output:**
+
+<img width="1229" height="480" alt="image" src="https://github.com/user-attachments/assets/5f7ae487-f64b-45fe-86e2-f84c30e2828f" />
+
+
+**Question 7**
+---
+Write a SQL query to modify the Student_details table by adding a new column Email of type VARCHAR(50) and updating the column MARKS to have a default value of 0.n 7 here
+
+```sql
+ALTER TABLE Student_details
+ADD COLUMN Email varchar(50)
+ALTER COLUMN MARKS SET DEFAULT 0;
+```
+
+**Output:**
+
+![Output7](output.png)
+
+**Question 8**
+---
+Insert all employees from Former_employees into Employee
+
+Table attributes are EmployeeID, Name, Department, Salary
+
+
+```sql
+INSERT INTO Employee(EmployeeID,Name,Department,Salary)
+SELECT EmployeeID,Name,Department,Salary
+FROM Former_employees;
+```
+
+**Output:**
+
+<img width="1240" height="378" alt="image" src="https://github.com/user-attachments/assets/1975d082-6cf9-44aa-b3b6-c8786f37d1d2" />
 
 
 **Question 9**
@@ -287,39 +273,49 @@ ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
 AssignmentDate as DATE should be NOT NULL.
 
 ```sql
-create table ProjectAssignments(
-AssignmentID INTEGER PRIMARY KEY,
-EmployeeID INTEGER,
-ProjectID INTEGER,
-AssignmentDate DATE not null,
-foreign key (EmployeeID) references Employees(EmployeeID),
-foreign key (ProjectID) references Projects(ProjectID)
+CREATE TABLE ProjectAssignments(
+     AssignmentID INTEGER PRIMARY KEY,
+     EmployeeID INTEGER,
+     ProjectID INTEGER,
+     AssignmentDate DATE NOT NULL,
+     FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
+     FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID)
 );
 ```
 
 **Output:**
-<img width="1099" height="459" alt="image" src="https://github.com/user-attachments/assets/33f7d3f3-b84b-41b4-a429-3c834ee2db90" />
+
+<img width="1242" height="387" alt="image" src="https://github.com/user-attachments/assets/f2862b20-efd3-4015-8943-74d29c41ced7" />
 
 
 **Question 10**
 ---
-Insert all employees from Former_employees into Employee
-
-Table attributes are EmployeeID, Name, Department, Salary
-
-
+Create a new table named orders with the following specifications:
+ord_id as TEXT with a length of 4.
+item_id as TEXT.
+ord_date as DATE.
+ord_qty as INTEGER.
+cost as INTEGER.
+The primary key is a composite key consisting of item_id and ord_date.
+ord_id and item_id should not accept NULL
 
 ```sql
-insert into Employee(EmployeeID,Name,Department,Salary) select EmployeeID,Name,Department,Salary from Former_employees
+CREATE TABLE orders (
+      ord_id TEXT NOT NULL CHECK(LENGTH(ord_id)=4),
+      item_id TEXT NOT NULL,
+      ord_date DATE,
+      ord_qty INTEGER,
+      cost INTEGER,
+      PRIMARY KEY(item_id,ord_date)
+);
+
 ```
 
 **Output:**
 
-<img width="626" height="463" alt="image" src="https://github.com/user-attachments/assets/db214b74-b54c-44da-be49-0a192c32843f" />
+<img width="1247" height="413" alt="image" src="https://github.com/user-attachments/assets/2d0438f1-fd24-479f-8459-bb5c50fc337c" />
 
 
 
 ## RESULT
 Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
-
-
