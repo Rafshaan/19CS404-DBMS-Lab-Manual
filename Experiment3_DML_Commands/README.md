@@ -47,182 +47,174 @@ SELECT column1, column2 FROM table_name WHERE condition;
 ```
 **Question 1**
 --
-Write a SQL statement to double the availability of the product with product_id 1.
+Write a SQL statement to Update the grade of all customers in Chennai city as  5. 
 
-products table
-
----------------
-product_id
-product_name
-category_id
-availability
+Customer table (customer_id,cust_name,city,grade,salesman_id)
 
 ```sql
-update products set availability=availability*2 where product_id=1;
+UPDATE Customer
+SET grade =5
+WHERE city='Chennai';
 ```
 
 **Output:**
-<img width="1130" height="700" alt="image" src="https://github.com/user-attachments/assets/57a4dd73-dd12-4ebe-a5a8-28c3982e14d1" />
+
+<img width="1228" height="568" alt="image" src="https://github.com/user-attachments/assets/a912a073-c60a-493b-a5f2-bbcb1159d083" />
 
 
 **Question 2**
 ---
-Write a SQL statement to change the email column of employees table with 'Unavailable' for all employees in employees table.
+Write a SQL query to reduce the reorder level by 30% where cost price is more than 50 and quantity in stock is less than 100 in the products table.
 
-Employees table
+Products Table 
 
----------------
-employee_id
-first_name
-last_name
-email
-phone_number
-hire_date
-job_id
-salary
-commission_pct
-manager_id
-department_id
- 
 
 ```sql
-update Employees set email='Unavailable';
+UPDATE products
+SET reorder_lvl=(0.7*reorder_lvl)
+WHERE cost_price>50 AND quantity<100;
 ```
 
 **Output:**
+
+<img width="1234" height="542" alt="image" src="https://github.com/user-attachments/assets/9baf474e-05e2-45e8-8602-69e7a9252400" />
 
 
 **Question 3**
 ---
-Write a SQL statement to update the product_name as 'Grapefruit' whose product_id is 4 in the products table.
+Update the 'Selling_Price' to add 10% extra margin for all products supplied by the supplier with id 6.
 
-products table
+PRODUCTS TABLE
 
----------------
-product_id
-product_name
-category_id
-availability
 
 ```sql
-update products set product_name='Grapefruit' where product_id=4;
+UPDATE PRODUCTS
+SET sell_price=ROUND(1.1*sell_price)
+WHERE supplier_id=6;
 ```
 
 **Output:**
-<img width="1075" height="706" alt="image" src="https://github.com/user-attachments/assets/6c31c38e-a017-40b8-ad8e-aa0827939e80" />
+
+<img width="1237" height="630" alt="image" src="https://github.com/user-attachments/assets/e787da4d-882e-4857-b6e5-2a38c04e64ad" />
 
 
 **Question 4**
 ---
-Write a SQL query to Delete customers from 'customer' table where 'GRADE' is not equal to 3.
+Write a SQL query to remove rows from the table 'customer' with the following condition -
+
+1. 'cust_city' should begin with the letter 'L',
 
 ```sql
-delete from Customer where GRADE!=3;
+DELETE FROM Customer
+WHERE CUST_CITY LIKE 'L%';
 ```
 
 **Output:**
-<img width="670" height="884" alt="image" src="https://github.com/user-attachments/assets/55fbe429-80e5-425d-a0be-c300a6728564" />
+
+<img width="1213" height="879" alt="image" src="https://github.com/user-attachments/assets/f24bc098-8ea6-470c-9577-ae32ba7f728c" />
 
 
 **Question 5**
 ---
-Write a SQL query to Delete All Doctors with a NULL Last Name
+Write a SQL query to Delete All Doctors with a NULL Specialization
+Sample table: Doctors
+attributes : doctor_id, first_name, last_name, specialization
 
 ```sql
-delete from Doctors where last_name is null;
+DELETE FROM Doctors
+WHERE specialization IS Null;
 ```
 
 **Output:**
-<img width="1067" height="1008" alt="image" src="https://github.com/user-attachments/assets/22a36eec-b488-4813-8816-6321c15be625" />
+
+<img width="1229" height="944" alt="image" src="https://github.com/user-attachments/assets/7dfdd053-3f2a-4c3a-99e4-eab973cf7992" />
 
 
 **Question 6**
 ---
-Write a SQL query to Delete a Specific Surgery whose ID is 3 or surgeon ID is 4.
+Write a SQL query to Delete customers from 'customer' table where 'WORKING_AREA' is 'New York'.
 
 ```sql
-delete from Surgeries where surgery_id=3 or surgeon_id=4;
+DELETE FROM Customer
+WHERE WORKING_AREA='New York';
 ```
 
 **Output:**
-<img width="888" height="1034" alt="image" src="https://github.com/user-attachments/assets/0103757a-7bd9-41ef-a959-7c21e91dce78" />
+
+<img width="1222" height="825" alt="image" src="https://github.com/user-attachments/assets/6cece693-0633-44bc-ade1-e3e1eefc6b6a" />
 
 
 **Question 7**
 ---
-Write a query to fetch details of employees with the address as “DELHI(DEL)” from EmployeeInfo table.
+Write a query to Select all the records from the EmployeeInfo table, where the departments are either HR or Account.
 
 ```sql
-select * from EmployeeInfo where Address like "DELHI(DEL)";
+SELECT *
+FROM Employeeinfo
+WHERE Department IN ('HR','Account');
 ```
 
 **Output:**
-
-<img width="1262" height="588" alt="image" src="https://github.com/user-attachments/assets/ee9c3826-01cb-4b45-a1b8-3277238d85c6" />
-
+<img width="1233" height="368" alt="image" src="https://github.com/user-attachments/assets/181d500c-aca3-492d-be39-7afa7b5b7fbb" />
 
 **Question 8**
 ---
-write a SQL query to create a union of two queries that shows the customer id, cities, and ratings of all customers. Those with a rating of 300 or greater will have the words 'High Rating', while the others will have the words 'Low Rating'.
+Write a SQL statement to Display the order number, orderdate and the purchase amount of
+orders table which will be delivered by the salesman with ID 5001.
 
-customer table
+orders table
 
-cid           name          type   notnull       dflt_value  pk
-------------  ------------  -----  ------------  ----------  ----------
-0             customer_id   int    0                         0
-1             cust_name     text   0                         0
-2             city          text   0                         0
-3             grade         int    0                         0
-4             salesman_id   int    0                         0
+name                 type
+---------------     ---------------
+order_no            int
+purch_amt         real
+order_date        text
+customer_id      int
+salesman_id      int
 
 ```sql
-select customer_id,city,grade,"High Rating" as Rating from customer
-where grade >= 300
-
-union
-
-select customer_id,city,grade,"Low Rating" as Rating from customer
-where grade < 300;
+SELECT order_no,order_date,purch_amt
+FROM orders
+WHERE salesman_id=5001;
 ```
 
 **Output:**
 
-<img width="789" height="780" alt="image" src="https://github.com/user-attachments/assets/76313696-de8e-4420-9836-3dd95244f77e" />
+<img width="1049" height="492" alt="image" src="https://github.com/user-attachments/assets/1ed25a19-36ca-4b18-bbb7-4f8bb7fcd27d" />
 
 
 **Question 9**
 ---
-Write a SQL statement to Display names and city of salesman, who belongs to the city of London or Rome.
-
-                                                                Inventory.db
+Write a SQL query to categorize decimal as 'High', 'Medium', or 'Low' based on whether it is greater than 100, between 50 and 100, or less than 50 in the Calculations table
 
 ```sql
-select name,city from salesman where city in ('London','Rome') ;
+SELECT id, decimal,
+    CASE
+        WHEN decimal >100 THEN 'High'
+        WHEN decimal BETWEEN 50 AND 100 THEN 'Medium'
+        ELSE 'Low'
+    END AS category
+FROM Calculations;
 ```
 
 **Output:**
 
-<img width="711" height="664" alt="image" src="https://github.com/user-attachments/assets/c23597fb-f77f-4609-b958-c61d0f0622a9" />
+<img width="849" height="544" alt="image" src="https://github.com/user-attachments/assets/747eb82c-0e3e-4a03-b37b-f089640c9691" />
 
 
 **Question 10**
 ---
 write a SQL query to find customers who are either from the city 'New York' or who do not have a grade greater than 100. Return customer_id, cust_name, city, grade, and salesman_id.
 
-Sample table: customer
-
- customer_id |   cust_name    |    city    | grade | salesman_id 
--------------+----------------+------------+-------+-------------
-        3002 | Nick Rimando   | New York   |   100 |        5001
-        3007 | Brad Davis     | New York   |   200 |        5001
-        3005 | Graham Zusi    | California |   200 |        5002
-
 ```sql
-select * from customer where city in ("New York") or grade<=100;
+SELECT customer_id,cust_name,city,grade,salesman_id
+FROM customer
+WHERE city='New York' OR grade<=100;
 ```
 
 **Output:**
-<img width="851" height="711" alt="image" src="https://github.com/user-attachments/assets/6bdd15a0-64a4-4df4-8831-07c8b25eeab5" />
+
+<img width="1233" height="528" alt="image" src="https://github.com/user-attachments/assets/4945c81d-5fec-41b4-acde-065213cf331b" />
 
 
 ## RESULT
